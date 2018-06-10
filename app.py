@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
+import configparser
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:xxx@docker.moik.org/django'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -14,6 +16,15 @@ api = Api(app)
 # for row in result:
 #     print("id :", row['id'])
 # connection.close()
+
+def getConfig():
+    config = configparser.ConfigParser()
+    config.read('./config.rc')
+    credentials = {
+        'fn_user':config['Credentials']['username'],
+        'fn_pass':config['Credentials']['password'],
+    }
+    return credentials
 
 class sonnen_sonnenbattery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,6 +54,7 @@ def hello_world():
 def status():
     status_item = sonnen_sonnenbattery.query.order_by(sonnen_sonnenbattery.id.desc()).first()
     return_str = str(status_item.timestamp)+" consum: "+str(status_item.consumption)
+    return_json = status_item.json()
     return return_str
 
 class HelloWorld(Resource):

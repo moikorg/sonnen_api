@@ -20,14 +20,14 @@ class sonnenStatus(Resource):
         return_json={
             'id': status_item.id,
             'consumption': status_item.consumption,
-            'gridConsumption': status_item.gridConsumption,
+            'gridFeedIn': status_item.gridConsumption,
             'pacTotal': status_item.pacTotal,
             'production': status_item.production,
-            'rsoc': status_item.rsoc,
+            'RSOC': status_item.rsoc,
             'timestamp': str(status_item.timestamp),
             'uAC': status_item.uAC,
             'uBat': status_item.uBat,
-            'usoc': status_item.usoc}
+            'USOC': status_item.usoc}
         return return_json
 
 api.add_resource(sonnenStatus, '/api/v1/status')

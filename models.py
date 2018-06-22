@@ -1,6 +1,14 @@
-from flask_sqlalchemy import SQLAlchemy
+"""
+models imports app, but app does not import models so we haven't created
+any loops.
+"""
+import datetime
+from flask_sqlalchemy import *
 
-db = SQLAlchemy()
+
+from app import db
+
+
 
 
 class sonnen_sonnenbattery(db.Model):
@@ -20,5 +28,3 @@ class sonnen_sonnenbattery(db.Model):
     timestamp = db.Column(db.DateTime,nullable=False,index=True)
     uAC = db.Column(db.Integer)
     uBat = db.Column(db.Integer)
-
-    #pass

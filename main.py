@@ -24,4 +24,6 @@ log.setLevel(logging.ERROR)
 
 
 if __name__ == '__main__':
-    views.app.run(debug=False)
+    views.app.run(host='0.0.0.0',
+                  port=5002,
+                  debug=False)

@@ -12,10 +12,16 @@ from app import app, db
 import api
 import models
 import views
+import logging
+
+
+# set the logging level to ERROR to reduce the verbosity in the shell
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 #admin.setup()
 #api.setup()
 
 
 if __name__ == '__main__':
-    views.app.run()
+    views.app.run(debug=False)

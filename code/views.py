@@ -12,7 +12,8 @@ def hello_world():
     try:
         something = sonnen_sonnenbattery.query.order_by("id desc").first()
     except Exception as e:
-        return "ERROR! Can not connect to DB"
+        retStr = "ERROR! Can not connecto to DB. "+str(e)
+        return retStr
     else:
         return 'Hello World! '+str(something.timestamp)
 

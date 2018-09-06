@@ -1,8 +1,19 @@
 FROM alpine:latest
-#FROM hypriot/rpi-alpine-scratch
 
 RUN apk update && apk upgrade && apk add bash 
-RUN apk add python3
+RUN apk add python3 python3-dev mariadb-dev build-base
+RUN pip3 install --upgrade pip
+RUN pip3 install mysqlclient 
+#RUN apk add mariadb-client-libs
+
+RUN apk add mariadb-connector-c-dev mariadb-connector-c
+
+run apk add py3-sqlalchemy 
+RUN apk del python3-dev mariadb-dev build-base 
+
+# for installing of crypto mysql driver
+
+#RUN apk add libffi-dev openssl-dev make gcc python3-dev
 
 RUN rm -rf /var/cache/apk/*
 

@@ -9,4 +9,3 @@ services:
       - ./code:/code
     ports:
       - 5002:5002
-

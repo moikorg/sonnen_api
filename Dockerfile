@@ -1,9 +1,9 @@
 FROM alpine:latest
 
 RUN apk update && apk upgrade && apk add bash 
-RUN apk add python3 python3-dev mariadb-dev build-base
-RUN pip3 install --upgrade pip
-RUN pip3 install mysqlclient 
+RUN apk add python3 python3-dev py3-pip  mariadb-dev build-base
+RUN pip install --upgrade pip
+RUN pip install mysqlclient 
 #RUN apk add mariadb-client-libs
 
 RUN apk add mariadb-connector-c-dev mariadb-connector-c
